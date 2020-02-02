@@ -12,7 +12,11 @@ public class Client : MonoBehaviour
     private Transform objectDeliverPosition;
     [SerializeField]
     private float clientSpeed;
+    [SerializeField]
+    private GameObject waitBar;
+
     private Rigidbody rigidbody;
+    private loadingbar loadingBar;
 
     public Transform pointDestination;
     public Transform pointDelivery;
@@ -26,6 +30,8 @@ public class Client : MonoBehaviour
         objectDeliverPosition = transform.GetChild(0);
         rigidbody = GetComponent<Rigidbody>();
         navMeshAgent.speed = clientSpeed;
+        loadingBar = waitBar.GetComponentInChildren<loadingbar>();
+        waitBar.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -43,6 +49,9 @@ public class Client : MonoBehaviour
         deliveredObject = true;
         objectDeliver.transform.parent = pointDelivery;
         objectDeliver.transform.localPosition = new Vector3(0, 0, 0);
+        objectDeliver = null;
+        waitBar.SetActive(true);
+        loadingBar.waiting = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -79,5 +88,10 @@ public class Client : MonoBehaviour
         {
             navMeshAgent.speed = clientSpeed;
         }
+    }
+
+    private void Wait()
+    {
+
     }
 }
