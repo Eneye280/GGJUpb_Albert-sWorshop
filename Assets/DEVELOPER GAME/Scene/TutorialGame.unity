@@ -12084,7 +12084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energy: 100
-  reductionDelay: 0.1
+  reductionDelay: 1
   pointLight: {fileID: 1333811215}
   addEnergyCauldron: 0
   particleEpxlosion: {fileID: 1591211486}
