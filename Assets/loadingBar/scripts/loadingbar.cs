@@ -11,12 +11,17 @@ public class loadingbar : MonoBehaviour {
 
     [SerializeField]
     private Color[] waitColors;
+    [SerializeField]
+    private GameObject client;
     
     public bool waiting;
+
+    private NeedRepairController needRepairController;
    
 
     // Use this for initialization
     void Start () {
+        needRepairController = client.GetComponent<NeedRepairController>();
         rectComponent = GetComponent<RectTransform>();
         imageComp = rectComponent.GetComponent<Image>();
         imageComp.fillAmount = 0.0f;
@@ -32,18 +37,22 @@ public class loadingbar : MonoBehaviour {
         if(imageComp.fillAmount > 0 && imageComp.fillAmount <0.25)
         {
             imageComp.color = waitColors[0];
+            needRepairController.needReference.sprite = needRepairController.allEmoticons[0];
         }
         else if(imageComp.fillAmount > 0.25 && imageComp.fillAmount < 0.50)
         {
             imageComp.color = waitColors[1];
+            needRepairController.needReference.sprite = needRepairController.allEmoticons[1];
         }
         else if (imageComp.fillAmount > 0.50 && imageComp.fillAmount < 0.75)
         {
             imageComp.color = waitColors[2];
+            needRepairController.needReference.sprite = needRepairController.allEmoticons[2];
         }
         else if (imageComp.fillAmount > 0.75 && imageComp.fillAmount < 1)
         {
             imageComp.color = waitColors[3];
+            needRepairController.needReference.sprite = needRepairController.allEmoticons[3];
         }
     }
 }
