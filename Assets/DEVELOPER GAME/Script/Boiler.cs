@@ -12,8 +12,8 @@ public class Boiler : MonoBehaviour
 
     [SerializeField]
     private Light pointLight;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         StartCoroutine(ReduceEnergy(reductionDelay));
     }
@@ -24,13 +24,13 @@ public class Boiler : MonoBehaviour
         {
             energy--;
             pointLight.intensity = GetLightIntensity();
-            //print($"Energy: {energy}");
-            if(energy == 0)
-                print("Sin Energía");
+
+            if (energy == 0)
+                LoadAsync.instance.LoadScene(5);
         }
-        else
-            print("Sin Energía");
-            
+        //else
+        //    LoadAsync.instance.LoadScene(5);
+
         yield return new WaitForSeconds(delay);
         StartCoroutine(ReduceEnergy(delay));
     }
@@ -44,7 +44,7 @@ public class Boiler : MonoBehaviour
         }
     }
 
-    float GetLightIntensity()
+    public float GetLightIntensity()
     {
         return float.Parse((energy * 0.02).ToString());
     }

@@ -11,4 +11,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DEVELOPER GAME/Scene/TutorialGame.unity
     guid: 7e6f400a0933a294382b7883ff938bb6
+  - enabled: 1
+    path: Assets/DEVELOPER GAME/Scene/LevelOne.unity
+    guid: f12f4d2f71f4fe1449d59ab5e9bb1694
+  - enabled: 1
+    path: Assets/DEVELOPER GAME/Scene/LevelTwo.unity
+    guid: 1ecb4389595823c4894e4f765253734c
+  - enabled: 1
+    path: Assets/DEVELOPER GAME/Scene/LevelThree.unity
+    guid: efded36f6d3ff5e4a994d2bc2092082c
+  - enabled: 1
+    path: Assets/DEVELOPER GAME/Scene/Game Over.unity
+    guid: 93d2736501655da4f83c141ebebfbb97
+  - enabled: 1
+    path: Assets/DEVELOPER GAME/Scene/YouWin.unity
+    guid: 9e7c7960541364044a3dbff2fba08ad6
   m_configObjects: {}
