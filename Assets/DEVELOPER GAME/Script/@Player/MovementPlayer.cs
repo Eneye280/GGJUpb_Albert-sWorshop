@@ -19,16 +19,40 @@ public class MovementPlayer : MonoBehaviour
     public float gravity = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
 
+    [SerializeField]
+    private GameObject objectRepaired;
+    [SerializeField]
+    private GameObject objectOutRepaired;
+    [SerializeField]
+    private GameObject objectOnTheCounter;
+    [SerializeField]
+    private bool inGrabPoint;
+    [SerializeField]
+    private bool inWorkZone;
+    [SerializeField]
+    private Transform objectGripped;
+    [SerializeField]
+    private Transform workZonePosition;
+
+    //Test
+    public bool testBoolGrab = false;
+    public bool testBoolRelease = false;
+
     private void Awake()
     {
         animatorPlayer = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
+        objectGripped = transform.GetChild(0);
     }
 
     private void Update()
     {
         //CallMovementPlayer();
         Movement();
+
+        //Test
+        Grab();
+        Release();
     }
 
     public void CallMovementPlayer()
@@ -67,5 +91,79 @@ public class MovementPlayer : MonoBehaviour
 
         //animatorPlayer.SetFloat("vertical", translation);
         //animatorPlayer.SetFloat("horizontal", translation);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "GrabPoint")
+        {
+            print("InGrabPoint");
+            inGrabPoint = true;
+
+            if(other.transform.GetChild(0) != null)
+            {
+                objectOnTheCounter = other.transform.GetChild(0).gameObject;
+            }
+            
+        }
+
+        if (other.tag == "WorkZone")
+        {
+            print("InWorkZone");
+            inWorkZone = true;
+
+            if (other.transform.GetChild(0) != null)
+            {
+                workZonePosition = other.transform.GetChild(0).gameObject.transform;
+            }
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "GrabPoint")
+        {
+            print("OutGrabPoint");
+            inGrabPoint = false;
+
+            if(objectOnTheCounter != null)
+            {
+                objectOnTheCounter = null;
+            }
+        }
+    }
+
+    public void Grab()
+    {
+        if(testBoolGrab)
+        {
+            if (inGrabPoint)
+            {
+                if (objectOnTheCounter != null)
+                {
+                    objectOutRepaired = objectOnTheCounter;
+                    objectOutRepaired.transform.parent = objectGripped;
+                    objectOutRepaired.transform.localPosition = new Vector3(0, 0, 0);
+                    testBoolGrab = false;
+                }
+            }
+        }
+    }
+
+    public void Release()
+    {
+        if (testBoolRelease)
+        {
+            if (inWorkZone)
+            {
+                if (objectOutRepaired != null)
+                {
+                    objectOutRepaired.transform.parent = workZonePosition;
+                    objectOutRepaired.transform.localPosition = new Vector3(0, 0, 0);
+                    testBoolRelease = false;
+                }
+            }
+        }
     }
 }

@@ -9,6 +9,8 @@ TagManager:
   - RatSpawnerPoint
   - PointDestination
   - Client
+  - GrabPoint
+  - WorkZone
   layers:
   - Default
   - TransparentFX
