@@ -17,6 +17,7 @@ public class Client : MonoBehaviour
 
     private Rigidbody rigidbody;
     private loadingbar loadingBar;
+    private NeedRepairController needRepairController;
 
     public Transform pointDestination;
     public Transform pointDelivery;
@@ -32,6 +33,7 @@ public class Client : MonoBehaviour
         navMeshAgent.speed = clientSpeed;
         loadingBar = waitBar.GetComponentInChildren<loadingbar>();
         waitBar.gameObject.SetActive(false);
+        needRepairController = GetComponent<NeedRepairController>();
     }
 
     private void Update()
@@ -50,8 +52,8 @@ public class Client : MonoBehaviour
         objectDeliver.transform.parent = pointDelivery;
         objectDeliver.transform.localPosition = new Vector3(0, 0, 0);
         objectDeliver = null;
-        waitBar.SetActive(true);
-        loadingBar.waiting = true;
+        Wait();
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -92,6 +94,7 @@ public class Client : MonoBehaviour
 
     private void Wait()
     {
-
+        waitBar.SetActive(true);
+        loadingBar.waiting = true;
     }
 }
