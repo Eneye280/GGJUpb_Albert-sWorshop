@@ -26,8 +26,7 @@ public class loadingbar : MonoBehaviour {
     {
         if (imageComp.fillAmount != 1f)
         {
-            imageComp.fillAmount = imageComp.fillAmount + Time.deltaTime * speed;
-            
+            imageComp.fillAmount = imageComp.fillAmount + Time.deltaTime * speed; 
         }
 
         if(imageComp.fillAmount > 0 && imageComp.fillAmount <0.25)
@@ -46,25 +45,5 @@ public class loadingbar : MonoBehaviour {
         {
             imageComp.color = waitColors[3];
         }
-
-
-        //switch (imageComp.fillAmount)
-        //{
-        //    case 0.25f:
-        //        imageComp.color = waitColors[1];
-        //        break;
-
-        //    case 0.50f:
-        //        imageComp.color = waitColors[2];
-        //        break;
-
-        //    case 0.75f:
-        //        imageComp.color = waitColors[3];
-        //        break;
-
-        //    case 1f:
-        //        //Se estalla la cabeza
-        //        break;
-        //}
     }
 }

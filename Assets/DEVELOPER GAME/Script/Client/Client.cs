@@ -92,6 +92,6 @@ public class Client : MonoBehaviour
 
     private void Wait()
     {
-
+        
     }
 }

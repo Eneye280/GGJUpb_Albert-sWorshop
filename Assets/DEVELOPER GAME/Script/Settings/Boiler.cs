@@ -58,6 +58,8 @@ public class Boiler : MonoBehaviour
             if (energy == 0)
             {
                 particleEpxlosion.SetActive(true);
+                ManagerSound.instance.audioEffectGamePlay.clip = ManagerSound.instance.audioClipEffect[0];
+                ManagerSound.instance.audioEffectGamePlay.Play();
                 StartCoroutine(TimeExplosion());
             }
                 
@@ -82,9 +84,4 @@ public class Boiler : MonoBehaviour
         yield return new WaitForSeconds(2f);
         LoadAsync.instance.LoadScene(5);
     }
-    //public float GetLightIntensity()
-    //{
-    //    return float.Parse((energy * 0.02).ToString());
-    //}
-
 }
