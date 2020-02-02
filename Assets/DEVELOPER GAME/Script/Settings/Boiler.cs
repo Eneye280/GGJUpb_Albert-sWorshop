@@ -35,6 +35,7 @@ public class Boiler : MonoBehaviour
 
     [Space(25)]
     [SerializeField] internal int addEnergyCauldron;
+    [SerializeField] internal GameObject particleEpxlosion;
 
     private void Start()
     {
@@ -55,7 +56,11 @@ public class Boiler : MonoBehaviour
             pointLight.intensity = energy * Time.deltaTime;
 
             if (energy == 0)
-                LoadAsync.instance.LoadScene(5);
+            {
+                particleEpxlosion.SetActive(true);
+                StartCoroutine(TimeExplosion());
+            }
+                
         }
 
         yield return new WaitForSeconds(delay);
@@ -72,6 +77,11 @@ public class Boiler : MonoBehaviour
         }
     }
 
+    IEnumerator TimeExplosion()
+    {
+        yield return new WaitForSeconds(2f);
+        LoadAsync.instance.LoadScene(5);
+    }
     //public float GetLightIntensity()
     //{
     //    return float.Parse((energy * 0.02).ToString());

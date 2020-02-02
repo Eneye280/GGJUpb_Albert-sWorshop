@@ -38,8 +38,14 @@ public class MovementPlayer : MonoBehaviour
     public bool testBoolGrab = false;
     public bool testBoolRelease = false;
 
+    internal InputPlayer controls;
+    private void OnDisable() => controls.Disable();
+    private void OnEnable() => controls.Enable();
+
     private void Awake()
     {
+        controls = new InputPlayer();
+
         animatorPlayer = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         objectGripped = transform.GetChild(0);
@@ -112,6 +118,8 @@ public class MovementPlayer : MonoBehaviour
             print("InWorkZone");
             inWorkZone = true;
 
+            controls.Player.Add.performed += ctx => testBoolRelease = true;
+
             if (other.transform.GetChild(0) != null)
             {
                 workZonePosition = other.transform.GetChild(0).gameObject.transform;
@@ -136,7 +144,7 @@ public class MovementPlayer : MonoBehaviour
 
     public void Grab()
     {
-        if(testBoolGrab)
+        if (testBoolGrab)
         {
             if (inGrabPoint)
             {

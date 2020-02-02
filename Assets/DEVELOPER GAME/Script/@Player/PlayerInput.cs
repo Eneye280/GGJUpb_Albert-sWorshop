@@ -19,6 +19,7 @@ public class PlayerInput : MonoBehaviour
         controls = new InputPlayer();
 
         controls.Player.Movement.performed += ctx => movementPlayer.direction = ctx.ReadValue<Vector2>();
+        controls.Player.Add.performed += ctx => movementPlayer.testBoolGrab = true;
     }
 
 }

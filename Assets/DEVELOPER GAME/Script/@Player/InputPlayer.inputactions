@@ -20,14 +20,6 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Hit",
-                    "type": "Button",
-                    "id": "8bd11e9d-4263-4d0e-9355-e814a683232c",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -199,44 +191,22 @@
                 {
                     "name": "",
                     "id": "3c2db0a9-f6f2-477e-ad40-4f47e0798109",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Add",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b377725b-a9c3-4b62-9835-f6b6caeeba07",
                     "path": "<Keyboard>/e",
-                    "interactions": "MultiTap",
+                    "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "pc",
                     "action": "Add",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f5a77f3f-854a-4750-acc3-14357cbcffb3",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Add",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c30c27d5-d580-40ed-9dfb-eafd7d32a9c4",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Hit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e501aece-cf7f-4e2e-ba9d-5ab7e5ed2706",
-                    "path": "<Keyboard>/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Hit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -33,14 +33,6 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""Hit"",
-                    ""type"": ""Button"",
-                    ""id"": ""8bd11e9d-4263-4d0e-9355-e814a683232c"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -212,44 +204,22 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3c2db0a9-f6f2-477e-ad40-4f47e0798109"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Add"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b377725b-a9c3-4b62-9835-f6b6caeeba07"",
                     ""path"": ""<Keyboard>/e"",
-                    ""interactions"": ""MultiTap"",
+                    ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""pc"",
                     ""action"": ""Add"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f5a77f3f-854a-4750-acc3-14357cbcffb3"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Add"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c30c27d5-d580-40ed-9dfb-eafd7d32a9c4"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Hit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e501aece-cf7f-4e2e-ba9d-5ab7e5ed2706"",
-                    ""path"": ""<Keyboard>/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Hit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -279,7 +249,6 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Add = m_Player.FindAction("Add", throwIfNotFound: true);
-        m_Player_Hit = m_Player.FindAction("Hit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -331,14 +300,12 @@ public class @InputPlayer : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Add;
-    private readonly InputAction m_Player_Hit;
     public struct PlayerActions
     {
         private @InputPlayer m_Wrapper;
         public PlayerActions(@InputPlayer wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Add => m_Wrapper.m_Player_Add;
-        public InputAction @Hit => m_Wrapper.m_Player_Hit;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -354,9 +321,6 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 @Add.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAdd;
                 @Add.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAdd;
                 @Add.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAdd;
-                @Hit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHit;
-                @Hit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHit;
-                @Hit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHit;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -367,9 +331,6 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 @Add.started += instance.OnAdd;
                 @Add.performed += instance.OnAdd;
                 @Add.canceled += instance.OnAdd;
-                @Hit.started += instance.OnHit;
-                @Hit.performed += instance.OnHit;
-                @Hit.canceled += instance.OnHit;
             }
         }
     }
@@ -396,6 +357,5 @@ public class @InputPlayer : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnAdd(InputAction.CallbackContext context);
-        void OnHit(InputAction.CallbackContext context);
     }
 }
